@@ -17,17 +17,22 @@ def busca_largura(grafo, vertice):
                 for vert in nivel_atual:
                     v = vert
                     visitados[v] = True
-                    vizinhos_false = list(filter(lambda x : visitados[x] == False, grafo.vizinhos(v)))
+                    vizinhos_false = []
+                    
+                    for i in grafo.vizinhos(v):
+                        if visitados[i] == False:
+                            vizinhos_false.append(i)
+
 
                     for i in range(len(vizinhos_false)): 
                         visitados[vizinhos_false[i]] = True
                     fila.extend(vizinhos_false)
                 
-                nivel_atual = map(lambda x: str(x),nivel_atual)
+                nivel_atual = [str(string) for string in nivel_atual]
                 print("%d:" % (distancia), end = ' ')
                 print(",".join(nivel_atual))
                 
                 distancia += 1
 
 grafo1 = Grafo("dolphins.txt")
-busca_largura(grafo1,200)
+busca_largura(grafo1,3)
