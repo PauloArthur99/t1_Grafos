@@ -35,4 +35,4 @@ def busca_largura(grafo, vertice):
                 distancia += 1
 
 grafo1 = Grafo("dolphins.txt")
-busca_largura(grafo1,3)
+busca_largura(grafo1,1)
