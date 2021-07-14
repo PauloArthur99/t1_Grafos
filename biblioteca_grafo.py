@@ -3,6 +3,7 @@ class Grafo:
         self.file_name = file_name
         self.vertices = []
         self.arestas  = []
+        self.labels = []
         self.pesos    = {}
         self.num_vertices = None
         self.num_arestas  = None
@@ -22,7 +23,7 @@ class Grafo:
         return grau
     
     def rotulo(self, v):
-        return self.vertices[v - 1]
+        return self.labels[v - 1]
     
     def vizinhos(self, v):
         vizinhos = []
@@ -60,7 +61,8 @@ class Grafo:
         
         for i in range(self.num_vertices):
             linha = conteudo_grafo[i + 1].split()
-            self.vertices.append(linha[1])
+            self.vertices.append(int(linha[0]))
+            self.labels.append(linha[1])
         
         i += 3
         for j in range(i, len(conteudo_grafo)):
@@ -69,7 +71,6 @@ class Grafo:
             self.arestas.append(aresta)
             self.pesos[tuple(aresta)] = float(linha[2])
         self.num_arestas = len(self.arestas)
-    
 
 grafo1 = Grafo("dolphins.txt")
 print(grafo1.peso(1,41))
