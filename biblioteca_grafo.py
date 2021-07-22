@@ -72,5 +72,3 @@ class Grafo:
             self.pesos[tuple(aresta)] = float(linha[2])
         self.num_arestas = len(self.arestas)
 
-grafo1 = Grafo("dolphins.txt")
-print(grafo1.peso(1,41))
