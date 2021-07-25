@@ -1,23 +1,22 @@
 from biblioteca_grafo import Grafo
 
 def resultado(grafo):
-    #for i in range(grafo.qtdVertices()):
-        #print("%d: " % (i + 1)) + ",".join(map(str, grafo.pesos[(i,i)])))
-    #print(grafo.pesos[(1,2)])
-    for i in range(grafo.qtdVertices()):
-        print("Peso: %.1f" % grafo.peso(1,i+1))
-        print("Pesos: %.1f" % grafo.pesos[(1,i+1)])
-        print("\n")
+    for i in range(1, grafo.qtdVertices() + 1):
+        print("%d: " % (i), end = " ")
+        for j in range(1, grafo.qtdVertices() + 1):
+            print(grafo.peso2(i, j), end = ' ')
+        print()
 
-    print("\nRepresenta uma aresta de peso que não existe, ou seja, infinito")
+    print("\ninf: Representa uma aresta de peso que não existe, ou seja, infinito")
 
 def floydwarshall(grafo):
-    for k in range (grafo.qtdVertices()):
-        for i in range (grafo.qtdVertices()):
-            for j in range (grafo.qtdVertices()):
-                grafo.pesos[(i,j)] = min(grafo.peso(i,j), grafo.peso(i,k) + grafo.peso(k,j))
+    for k in range (1, grafo.qtdVertices() + 1):
+        for i in range (1, grafo.qtdVertices() + 1):
+            for j in range (1, grafo.qtdVertices() + 1):
+                grafo.pesos[(i,j)] = min(grafo.peso2(i,j), grafo.peso2(i,k) + grafo.peso2(k,j))
+
     return grafo
 
 if __name__ == "__main__":
-    grafo = Grafo("./fln_pequena.txt")
+    grafo = Grafo("./fln_pequena.txt", True)
     resultado(floydwarshall(grafo))
